@@ -1,13 +1,14 @@
-const {todo}=require('../models/index');
+const {todo,user}=require('../models/index');
 
 const getAlltodo=async(req,res)=>{
-    const response=await todo.findAll();
+    const response=await todo.findAll({include:user});
     return response;
 }
 const createtodo=async(data)=>{
     const response=await todo.create({
         todoTitle:data.todoTitle,
-        isComleted:data.isComleted
+        isComleted:data.isComleted,
+        userId:data.userId,
 
     });
     return response;
